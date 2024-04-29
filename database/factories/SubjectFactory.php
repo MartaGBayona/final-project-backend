@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+use App\Models\Role;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -17,7 +19,10 @@ class SubjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->name(),
+            'description' => $this->faker->sentence(),
+            'teacher_id' => rand(1,7),
+            'course_id' => rand(1,3),
         ];
     }
 }

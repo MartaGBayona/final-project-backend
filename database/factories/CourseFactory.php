@@ -17,7 +17,9 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->name(),
+            'description' => $this->faker->sentence(),
+            'teacher_id' => rand(1,5)
         ];
     }
 }

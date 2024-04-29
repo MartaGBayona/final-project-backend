@@ -14,6 +14,6 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Subject::factory(15)->create();
     }
 }

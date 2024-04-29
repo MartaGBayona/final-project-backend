@@ -17,7 +17,10 @@ class FileFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'file_path' => $this->faker->sentence(),
+            'student_id' => rand(1, 10),
+            'teacher_id' => rand(1, 5),
+            'subject_id' => rand(1, 3),
         ];
     }
 }

@@ -17,7 +17,8 @@ class InscriptioFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'student_id' => rand(1, 19),
+            'course_id' => rand(1, 3),
         ];
     }
 }

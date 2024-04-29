@@ -17,7 +17,10 @@ class ResultFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "grade" => "Apto",
+            'student_id' => rand(1, 10),
+            'teacher_id' => rand(1, 5),
+            'subject_id' => rand(1, 13),
         ];
     }
 }

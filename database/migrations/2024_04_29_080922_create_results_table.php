@@ -15,7 +15,14 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string("grade");
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('teacher_id');
+            $table->unsignedBigInteger('course_id');
+            $table->unique(['student_id', 'course_id', "teacher_id"]);
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
         });
     }
 

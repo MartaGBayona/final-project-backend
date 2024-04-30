@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+require __DIR__ . '/auth.php';
+require __DIR__ . '/users.php';
+require __DIR__ . '/courses.php';
+require __DIR__ . '/inscriptions.php';
+require __DIR__ . '/subjects.php';
+require __DIR__ . '/results.php';
+require __DIR__ . '/files.php';

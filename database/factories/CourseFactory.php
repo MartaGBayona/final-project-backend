@@ -19,7 +19,6 @@ class CourseFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'description' => $this->faker->sentence(),
-            'teacher_id' => rand(1,5)
         ];
     }
 }

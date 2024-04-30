@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class TeacherSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class TeacherSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('teachers')->insert([
+        DB::table('users')->insert([
             [
                 "role_id" => "1",
                 "name" => "Director",
@@ -39,7 +39,21 @@ class TeacherSeeder extends Seeder
                 'password' => bcrypt('123456'),
                 'remember_token' => Str::random(10),
             ],
+            [
+                "role_id" => "3",
+                "name" => "Alumno",
+                "surname" => "Apellido1",
+                "secondSurname" => "Apellido2",
+                "birth" => "1980-05-02",
+                "email" => "alumno@alumno.com",
+                'email_verified_at' => now(),
+                'password' => bcrypt('123456'),
+                'remember_token' => Str::random(10),
+            ],
+
+
         ]);
-        \App\Models\Teacher::factory(5)->create();
+        \App\Models\User::factory()->count(5)->teacher()->create();
+        \App\Models\User::factory()->count(20)->student()->create();
     }
 }

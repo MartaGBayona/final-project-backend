@@ -9,7 +9,7 @@ use App\Models\Role;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class StudentFactory extends Factory
+class UserFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,10 @@ class StudentFactory extends Factory
     public function definition()
     {
         $studentRoleId = Role::where('roleName', 'student')->value('id');
-        return [
+        $teacherRoleId = Role::where('roleName', 'teacher')->value('id');
+
+        $isStudent = $this->faker->boolean();
+        $data = [
             'role_id' => $studentRoleId,
             'name' => $this->faker->name(),
             'surname' => $this->faker->name(),
@@ -31,5 +34,29 @@ class StudentFactory extends Factory
             'remember_token' => Str::random(10),
             
         ];
+        if ($isStudent) {
+            $data['role_id'] = $studentRoleId;
+        } else {
+            $data['role_id'] = $teacherRoleId;
+        }
+
+        return $data;
+    }
+    public function teacher()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => Role::where('roleName', 'teacher')->value('id'),
+            ];
+        });
+    }
+
+    public function student()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => Role::where('roleName', 'student')->value('id'),
+            ];
+        });
     }
 }

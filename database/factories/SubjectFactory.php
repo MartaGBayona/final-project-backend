@@ -21,7 +21,6 @@ class SubjectFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'description' => $this->faker->sentence(),
-            'teacher_id' => rand(1,7),
             'course_id' => rand(1,3),
         ];
     }

@@ -106,7 +106,6 @@ class AuthController extends Controller
                     [
                         "success" => false,
                         "message" => "Email or password not valid 2",
-                        // "error" => $th->getMessage()
                     ],
                     400
                 );
@@ -150,4 +149,6 @@ class AuthController extends Controller
         );
     }
 };
+
+
 

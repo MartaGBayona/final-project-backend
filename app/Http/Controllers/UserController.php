@@ -52,5 +52,55 @@ class UserController extends Controller
             );
         }
     }
+
+    public function updateUser(Request $request, $id)
+    {
+        try {
+            $user = User::find($id);
+            $updateData = $request->only(['name', 'surname', 'secondSurname', 'email']);
+            $user->update($updateData);
+            
+            return response()->json([
+                "success" => true,
+                "message" => "User updated successfully",
+                "data" => $user
+            ], 
+            200
+        );
+
+        } catch (\Throwable $th) {
+            return response()->json(
+                [
+                    'success'=> false,
+                    'message' => "User cant updated",
+                    'error' =>$th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function deleteUser ($id) 
+    {
+        try {
+            $user_deleted = User::destroy($id);
+            return response()->json(
+                [
+                    'success' => true,
+                    'message' => "User deleted successfully",
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => "User cant be deleted",
+                    'error' => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
 }
 

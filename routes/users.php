@@ -7,3 +7,5 @@ use App\Http\Middleware\IsDirector;
 
 Route::get('/users/profile/', [UserController::class, 'getUserProfile'])->middleware('auth:sanctum');
 Route::get('/users', [UserController::class, 'getAllUsers'])->middleware(['auth:sanctum', IsDirector::class]);
+Route::delete('/users/{id}', [UserController::class, 'deleteUser'])->middleware(['auth:sanctum', IsDirector::class]);
+Route::put('/users/{id}', [UserController::class, 'updateUser'])->middleware('auth:sanctum');

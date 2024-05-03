@@ -132,4 +132,36 @@ class InscriptionController extends Controller
             );
         }
     }
+
+    public function deleteInscription ($id)
+    {
+        try {
+            $authenticatedUser = Auth::user();
+            $inscription = Inscription::findOrFail($id);
+            if ($authenticatedUser->id != $inscription->student_id && $authenticatedUser->role_id != 1) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Unauthorized to delete this inscription",
+                ], 403);
+            }
+            $inscription->delete();
+
+            return response()->json(
+            [
+                "success" => true,
+                "message" => "Inscription deleted successfully",
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json(
+            [
+                "success" => false,
+                "message" => "Inscription cant be deleted",
+                "error" => $th->getMessage()
+            ],
+            500
+            );
+        }
+    }
 }

@@ -32,6 +32,38 @@ class SubjectController extends Controller
         }
     }
 
+    public function getAllSubjectsInCourse($courseId)
+    {
+        try {
+            $course = Course::find($courseId);
+
+            if (!$course) {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Course not found",
+                ], 404);
+            }
+            $subjects = Subject::where('course_id', $courseId)->get();
+            return response()->json(
+            [
+                'success' => true,
+                'message' => "Subjects retrieved successfully for course $courseId",
+                'data' => $subjects
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json(
+                [
+                    'success'=> false,
+                    'message' => "Courses cant be retrieved",
+                    'error' => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
     public function postSubject (Request $request, $courseId) {
         try {
             $course = Course::find($courseId);

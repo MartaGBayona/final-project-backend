@@ -82,4 +82,25 @@ class CourseController extends Controller
             );
         }
     }
+
+    public function deleteCourse ($id)
+    {
+        try {
+            $course_deleted = Course::destroy($id);
+            return response()->json([
+                "success" => true,
+                "message" => "Course deleted successfully",
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json([
+                "success" => false,
+                "message" => "Course cant be deleted",
+                "error" => $th->getMessage()
+            ],
+            500
+            );
+        }
+    }
 }

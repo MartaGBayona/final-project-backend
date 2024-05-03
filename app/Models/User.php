@@ -55,4 +55,9 @@ class User extends Authenticatable
             $user->email_verified_at = now();
         });
     }
+
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class, 'student_id');
+    }
 }

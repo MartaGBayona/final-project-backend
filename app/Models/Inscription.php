@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\User;
 use App\Models\Course;
 
@@ -15,9 +16,9 @@ class Inscription extends Model
     {
         return $this->belongsTo(User::class, 'student_id');
     }
-    
-        public function course()
-        {
-            return $this->belongsTo(Course::class);
-        }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

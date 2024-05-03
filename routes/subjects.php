@@ -11,4 +11,4 @@ Route::get('/courses/{courseId}/subjects', [SubjectController::class, 'getAllSub
 Route::get('/subjects/{id}', [SubjectController::class, 'getSubjectById']);
 Route::post('/courses/{courseId}/subjects', [SubjectController::class, 'postSubject'])->middleware(['auth:sanctum', IsDirector::class]);
 Route::put('/subjects/{id}', [SubjectController::class, 'putSubject'])->middleware(['auth:sanctum', IsDirector::class]);
-Route::delete('/subjects/{id}', [SubjectController::class, 'deleteCourse'])->middleware(['auth:sanctum', IsDirector::class]);
+Route::delete('/subjects/{id}', [SubjectController::class, 'deleteSubject'])->middleware(['auth:sanctum', IsDirector::class]);

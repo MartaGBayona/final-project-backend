@@ -164,4 +164,35 @@ class SubjectController extends Controller
             );
         }
     }
+
+    public function deleteSubject ($id)
+    {
+        try {
+            $subject_deleted = Subject::destroy($id);
+
+            if (!$subject_deleted) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Subject not found",
+                ], 404);
+            }
+
+            return response()->json(
+            [
+                "success" => true,
+                "message" => "Subject deleted successfully",
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json(
+            [
+                "success" => false,
+                "message" => "Subject cant be deleted",
+                "error" => $th->getMessage()
+            ],
+            500
+            );
+        }
+    }
 }

@@ -102,5 +102,33 @@ class UserController extends Controller
             );
         }
     }
+
+    public function getAllUsersByRoleId ($roleId)
+    {
+        try {
+            $users = User::where('role_id', $roleId)->get();
+            if ($users->isEmpty()) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Role not exist",
+                ], 404);
+            }
+            return response()->json([
+                "success" => true,
+                "message" => "Users with role_id '$roleId' retrieved successfully",
+                "data" => $users
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json([
+                "success" => false,
+                "message" => "Users with role_id '$roleId' cant be retrieved",
+                'error' => $th->getMessage()
+            ], 
+            500
+        );
+        }
+    }
 }
 

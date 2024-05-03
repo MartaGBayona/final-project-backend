@@ -7,3 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/courses', [CourseController::class, 'getAllCourses']);
 Route::post('/courses', [CourseController::class, 'postCourse'])->middleware(['auth:sanctum', IsDirector::class]);
+Route::put('/courses/{id}', [CourseController::class, 'putCourse'])->middleware(['auth:sanctum', IsDirector::class]);

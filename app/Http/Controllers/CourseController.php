@@ -57,4 +57,29 @@ class CourseController extends Controller
             );
         }
     }
+
+    public function putCourse (Request $request, $id)
+    {
+        try {
+            $course = Course::find($id);
+            $updateData = $request->only(['title', 'description']);
+            $course->update($updateData);
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Course updated successfully",
+                "data" => $course
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json([
+                "success" => false,
+                "message" => "Course cant be updated",
+                "error" => $th->getMessage()
+            ],
+            500
+            );
+        }
+    }
 }

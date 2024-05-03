@@ -20,7 +20,7 @@ class CourseController extends Controller
                 200
             );
         } catch (\Throwable $th) {
-            return response()->json()(
+            return response()->json(
                 [
                     'success'=> false,
                     'message' => "Courses cant be retrieved",
@@ -47,7 +47,7 @@ class CourseController extends Controller
                 200
             );
         } catch (\Throwable $th) {
-            return response()->json()(
+            return response()->json(
                 [
                     'success'=> false,
                     'message' => "Course cant be created",
@@ -63,7 +63,8 @@ class CourseController extends Controller
         try {
             $course = Course::find($id);
             if (!$course) {
-                return response()->json([
+                return response()->json(
+                [
                     "success" => false,
                     "message" => "Course not found",
                 ], 404);
@@ -71,7 +72,8 @@ class CourseController extends Controller
             $updateData = $request->only(['title', 'description']);
             $course->update($updateData);
 
-            return response()->json([
+            return response()->json(
+            [
                 "success" => true,
                 "message" => "Course updated successfully",
                 "data" => $course
@@ -79,7 +81,8 @@ class CourseController extends Controller
             200
         );
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+            [
                 "success" => false,
                 "message" => "Course cant be updated",
                 "error" => $th->getMessage()
@@ -101,14 +104,16 @@ class CourseController extends Controller
                 ], 404);
             }
 
-            return response()->json([
+            return response()->json(
+            [
                 "success" => true,
                 "message" => "Course deleted successfully",
             ], 
             200
         );
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+            [
                 "success" => false,
                 "message" => "Course cant be deleted",
                 "error" => $th->getMessage()
@@ -123,13 +128,15 @@ class CourseController extends Controller
         try {
             $course = Course::find($id);
             if (!$course) {
-                return response()->json([
+                return response()->json(
+                [
                     "success" => false,
                     "message" => "Course not found",
                 ], 404);
             }
 
-            return response()->json([
+            return response()->json(
+            [
                 "success" => true,
                 "message" => "Course retrieved successfully",
                 "data" => $course
@@ -137,7 +144,8 @@ class CourseController extends Controller
             200
         );
         } catch (\Throwable $th) {
-            return response()->json([
+            return response()->json(
+            [
                 "success" => false,
                 "message" => "Course cant be retrieved",
                 "error" => $th->getMessage()

@@ -62,9 +62,15 @@ class CourseController extends Controller
     {
         try {
             $course = Course::find($id);
+            if (!$course) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Course not found",
+                ], 404);
+            }
             $updateData = $request->only(['title', 'description']);
             $course->update($updateData);
-    
+
             return response()->json([
                 "success" => true,
                 "message" => "Course updated successfully",
@@ -87,6 +93,14 @@ class CourseController extends Controller
     {
         try {
             $course_deleted = Course::destroy($id);
+
+            if (!$course_deleted) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Course not found",
+                ], 404);
+            }
+
             return response()->json([
                 "success" => true,
                 "message" => "Course deleted successfully",
@@ -97,6 +111,35 @@ class CourseController extends Controller
             return response()->json([
                 "success" => false,
                 "message" => "Course cant be deleted",
+                "error" => $th->getMessage()
+            ],
+            500
+            );
+        }
+    }
+
+    public function getCourseById ($id)
+    {
+        try {
+            $course = Course::find($id);
+            if (!$course) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Course not found",
+                ], 404);
+            }
+
+            return response()->json([
+                "success" => true,
+                "message" => "Course retrieved successfully",
+                "data" => $course
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json([
+                "success" => false,
+                "message" => "Course cant be retrieved",
                 "error" => $th->getMessage()
             ],
             500

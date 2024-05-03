@@ -50,7 +50,7 @@ class SubjectController extends Controller
             return response()->json(
                 [
                     'success' => true,
-                    'message' => "Course create successfully",
+                    'message' => "Subject create successfully",
                     'data' => $subject
                 ],
                 200
@@ -59,10 +59,44 @@ class SubjectController extends Controller
             return response()->json(
                 [
                     'success'=> false,
-                    'message' => "Course cant be created",
+                    'message' => "Subject cant be created",
                     'error' => $th->getMessage()
                 ],
                 500
+            );
+        }
+    }
+
+    public function putSubject (Request $request, $id)
+    {
+        try {
+            $subject = Subject::find($id);
+            if (!$subject) {
+                return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Subject not found",
+                ], 404);
+            }
+            $updateData = $request->only(['title', 'description']);
+            $subject->update($updateData);
+
+            return response()->json(
+            [
+                "success" => true,
+                "message" => "Subject updated successfully",
+                "data" => $subject
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json(
+            [
+                "success" => false,
+                "message" => "Course cant be updated",
+                "error" => $th->getMessage()
+            ],
+            500
             );
         }
     }

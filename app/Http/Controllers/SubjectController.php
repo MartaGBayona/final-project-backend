@@ -56,10 +56,42 @@ class SubjectController extends Controller
             return response()->json(
                 [
                     'success'=> false,
-                    'message' => "Courses cant be retrieved",
+                    'message' => "Subjects cant be retrieved",
                     'error' => $th->getMessage()
                 ],
                 500
+            );
+        }
+    }
+
+    public function getSubjectById ($id)
+    {
+        try {
+            $subject = Subject::find($id);
+            if (!$subject) {
+                return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Subject not found",
+                ], 404);
+            }
+
+            return response()->json(
+            [
+                "success" => true,
+                "message" => "Subject retrieved successfully",
+                "data" => $subject
+            ], 
+            200
+        );
+        } catch (\Throwable $th) {
+            return response()->json(
+            [
+                "success" => false,
+                "message" => "Subject cant be retrieved",
+                "error" => $th->getMessage()
+            ],
+            500
             );
         }
     }

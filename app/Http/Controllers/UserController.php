@@ -10,7 +10,6 @@ class UserController extends Controller
     {
         try {
             $user = auth()->user();
-
             return response()->json([
                 'success' => true,
                 'message' => 'Profile retrieved successfully',

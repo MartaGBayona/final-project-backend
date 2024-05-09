@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -11,6 +12,10 @@ class CourseController extends Controller
     {
         try {
             $courses = Course::all();
+            foreach ($courses as $course) {
+                $course->subjects = Subject::where('course_id', $course->id)->get();
+            }
+    
             return response()->json(
                 [
                     'success'=> true,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Inscription;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,9 @@ class InscriptionController extends Controller
 
             $user = User::findOrFail($userId);
             $inscriptions = $user->inscriptions()->with('course')->get();
+            foreach ($inscriptions as $inscription) {
+                $inscription->course->subjects = Subject::where('course_id', $inscription->course->id)->get();
+            }
 
             return response()->json(
                 [

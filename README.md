@@ -9,14 +9,25 @@
 
 1. [Description :classical_building:](#description-classical_building)
 2. [Stack :gear:](#stack-gear)
-3. [Project :open_book:](#Project-open_book)
-4. [Author :wave:](#author-wave)
+3. [Project :open_book:](#project-open_book)
+4. [Future functionalities :star2:](#future-functionalities-star2)
+5. [Author :wave:](#author-wave)
+6. [Acknowledgments :sparkling_heart:](#acknowledgments--sparkling_heart)
 
 ---
 
 ## Description :classical_building:
 
-Welcome to GameLobby, the ultimate hub for gamers to unite and play! 🎮 Dive into our dynamic social network tailored for gaming fans. Create custom gaming rooms linked to your favorite titles and spark conversations that evolve into epic multiplayer battles. Whether you're strategizing for the next raid or sharing tips for the latest release, GameLobby is your virtual playground for gaming greatness. Level up your social gaming experience today!
+Gorgoneye Cinema Academy is an online platform dedicated to providing free courses in the realm of film studies. Aspiring filmmakers and cinephiles alike can delve into a variety of courses covering topics such as the history of cinema and cinematographic techniques. Our platform aims to democratize access to film education, fostering a community where users can enhance their understanding of the art and craft of filmmaking from anywhere in the world.
+
+Features:
+- Free Courses: Gain access to a diverse range of courses without any cost barrier.
+- User Registration: Register and create an account to enroll in courses and track your progress.
+- History of Cinema: Explore the evolution of cinema through comprehensive historical lessons.
+- Cinematographic Techniques: Learn the fundamentals and advanced techniques used in filmmaking.
+- Interactive Learning: Engage with interactive content and multimedia resources to enhance your learning experience.
+- Community Interaction: Connect with fellow film enthusiasts, share insights, and collaborate on projects.
+- Accessible Anywhere, Anytime: Access courses and resources from the comfort of your home, on your schedule.
 
 ---
 
@@ -55,31 +66,27 @@ php artisan migrate --seed
 ```bash
 composer artisan serve
 ```
+- Import file FinalProjectController.json on folder HTTP to thunderClient. Allow importing all endpoints in the backend.
+- Project frontend: https://github.com/MartaGBayona/final-project-frontend.git
 
 ### 2 - Info to log
 
-- Super_admin:
+- Director:
 
 ```json
-
-  _id: 1,
-  name: "SuperAdmin",
-  email: "superadmin@superadmin.com",
-  password: "admin1234",
-  role: "super_admin"
-
+  name: "Director",
+  email: "director@director.com",
+  password: "123456",
+  role: "director"
 ```
 
-- User:
+- Student:
 
 ```json
-
-  _id: 2,
-  name: "User",
-  email: "user@user.com",
+  name: "Alumno",
+  email: "alumno@alumno.com",
   password: "123456",
-  role: "user"
-
+  role: "student"
 ```
 
 ### 2 - Enpoints:
@@ -89,7 +96,7 @@ composer artisan serve
 - Register:
 
 ```
-localhost:8000/api/register
+localhost:8000/api/auth/register
 ```
 
 <image src="./public/img/register.png" alt="register">
@@ -97,23 +104,31 @@ localhost:8000/api/register
 - Login:
 
 ```
-localhost:8000/api/login
+localhost:8000/api/auth/login
 ```
 
-<image src="./public/img/login.png" alt="login">
+<image src="./public/img/log.png" alt="login">
+
+- LogOut:
+
+```
+localhost:8000/api/auth/logout
+```
+
+<image src="./public/img/LogOut.png" alt="logout">
 
 
 2. User:
 
 - Get all users:
 
-Only super_admin can get all users
+Only director can get all users
 
 ```
 localhost:8000/api/users
 ```
 
-<image src="./public/img/getallusers.png" alt="GetAllUsers">
+<image src="./public/img/GetAllUsers.png" alt="GetAllUsers">
 
 - Get profile:
 
@@ -123,155 +138,211 @@ Need user logging
 localhost:8000/api/users/profile
 ```
 
-<image src="./public/img/getuserprofile.png" alt="GetProfile">
+<image src="./public/img/GetProfile.png" alt="GetProfile">
+
+- Get users by role:
+
+Only director can get users by role
+
+```
+localhost:8000/api/users/roleId
+```
+
+<image src="./public/img/GetUsersByRole.png" alt="GetAllUsersByRole">
+
+- Update User:
+
+Can update name, surname, secondSurname and email
+
+Need user logging
+
+```
+localhost:8000/api/users/userId
+```
+
+<image src="./public/img/UpdateUser.png" alt="UpdateProfile">
 
 - Delete user :
 
-Only super_admin can delete users
+Only director can delete users
 
-<image src="./public/img/deleteuser.png" alt="DeleteUser">
+```
+localhost:8000/api/users/userId
+```
+
+<image src="./public/img/DeleteUser.png" alt="DeleteUser">
 
 
-3. Games:
+3. Courses:
 
-- Get all games:
+- Get all courses:
+
+```
+localhost:8000/api/courses
+```
+
+<image src="./public/img/GetAllCourses.png" alt="GetAllCourses">
+
+- Post Course:
+
+Only director can post course
+
+```
+localhost:8000/api/courses
+```
+
+<image src="./public/img/postCourse.png" alt="PostCourse">
+
+- Put course:
+
+Only director can update course
+
+```
+localhost:8000/api/courses/courseId
+```
+
+<image src="./public/img/PutCourse.png" alt="PutCourse">
+
+- Delete course:
+
+Only director can delete course
+
+```
+localhost:8000/api/courses/courseId
+```
+
+<image src="./public/img/DeleteCourse.png" alt="DeleteCourse">
+
+- Get course by Id:
+
+```
+localhost:8000/api/courses/courseId
+```
+
+<image src="./public/img/GetCourseById.png" alt="GetCourseById">
+
+
+4. Subjects:
+
+- Get all subjects:
+
+```
+localhost:8000/api/subjects
+```
+
+<image src="./public/img/GetAllSubjects.png" alt="GetAllSubjects">
+
+- Post subject:
+
+Only director can post subject
+
+```
+localhost:8000/api/courses/courseId/subjects
+```
+
+<image src="./public/img/PostSubject.png" alt="PostSubject">
+
+- Put subject:
+
+Only director can put subject
+
+```
+localhost:8000/api/subjects/subjectId
+```
+
+<image src="./public/img/PutSubject.png" alt="PutSubject">
+
+- Get subject on course:
+
+```
+localhost:8000/api/courses/courseId/subjects
+```
+
+<image src="./public/img/GetSubjectsOnCOurse.png" alt="GetSubjectsOnCourse">
+
+- Delete subject:
+
+Only director can delete subject
+
+```
+localhost:8000/api/subjects/subjectId
+```
+
+<image src="./public/img/DeleteSubject.png" alt="DeleteSubject">
+
+- Get subject by id:
+
+```
+localhost:8000/api/subjects/subjectId
+```
+
+<image src="./public/img/GetSubjectById.png" alt="GetSubjectById">
+
+5. Inscriptions:
+
+- Get all inscriptions:
+
+Only director view all inscriptions
+
+```
+localhost:8000/api/inscriptions
+```
+
+<image src="./public/img/GetAllInscriptions.png" alt="GetAllInscriptions">
+
+- Get my inscriptions:
 
 Need user logging
 
 ```
-localhost:8000/api/games
+localhost:8000/api/users/userId/inscriptions
 ```
 
-<image src="./public/img/getallgames.png" alt="GetAllGames">
+<image src="./public/img/GetMyInscriptions.png" alt="GetMyInscriptions">
 
-- Post game:
-
-Only super_admin can post game
-
-```
-localhost:8000/api/games
-```
-
-<image src="./public/img/postgame.png" alt="PostGame">
-
-- Put game:
-
-Only super_admin can update game
-
-```
-localhost:8000/api/games/{id}
-```
-
-<image src="./public/img/putgame.png" alt="PutGame">
-
-- Delete game:
-
-Only super_admin can delete game
-
-```
-localhost:8000/api/games/{id}
-```
-
-<image src="./public/img/deletegame.png" alt="DeleteGame">
-
-
-4. Rooms:
-
-- Get all rooms:
+- Post inscription:
 
 Need user logging
 
 ```
-localhost:8000/api/rooms
+localhost:8000/api/courses/userId/inscriptions
 ```
 
-<image src="./public/img/getallrooms.png" alt="GetAllRooms">
+<image src="./public/img/PostInscription.png" alt="PostInscription">
 
-- Post room:
 
-Need user logging
-
-```
-localhost:8000/api/rooms
-```
-
-<image src="./public/img/postroom.png" alt="PostRoom">
-
-- Put room:
-
-Need user logging
+- Delete inscription:
 
 ```
-localhost:8000/api/rooms/{id}
+localhost:8000/api/inscriptions/id
 ```
 
-<image src="./public/img/putroom.png" alt="">
-
-- Delete room:
-
-Need user logging
-
-```
-localhost:8000/api/rooms/{id}
-```
-
-<image src="./public/img/deleteroom.png" alt="DeleteRoom">
+<image src="./public/img/DeleteInscription.png" alt="DeleteInscription">
 
 
-5. Messages:
+## Future functionalities :star2:
 
-- Get all room messages: 
+- Generate endpoints to manage user files.
 
-Need user logging
+- Generate endpoints for managing teachers' evaluations of the files provided by students.
 
-<image src="./public/img/getallroommessages.png" alt="GetAllRoomMessages">
-
-- Get all my messages:
-
-Need user logging
-
-<image src="./public/img/getallmymessages.png" alt="GetAllMyMessages">
-
-- Post message:
-
-Need user logging
-
-<image src="./public/img/postmessages.png" alt="PostMessage">
-
-- Put message:
-
-Need user logging
-
-<image src="./public/img/putmessages.png" alt="PutMessage">
-
-- Delete message:
-
-Need user logging
-
-<image src="./public/img/deletemessage.png" alt="DeleteMessage">
-
-
-6. User-Room:
-
-- Get user-room:
-
-<image src="./public/img/getuserrooms.png" alt="GetUserRoom">
-
-- Post user-room:
-
-Need user logging
-
-<image src="./public/img/postuserroom.png" alt="PostUserRoom">
-
-- Delete user-room: 
-
-<image src="./public/img/deleteuserroom.png" alt="DeleteUserRoom">
+- Add more error validation in the controllers.
 
 ---
 
 ## Author :wave:
 
+[GitHub](https://github.com/MartaGBayona) - [LinkedIn](https://www.linkedin.com/in/martagbayona/)
 
+---
+
+## Acknowledgments  :sparkling_heart:
+
+My deepest gratitude to all my colleagues at GeeksHubs Academy.
+
+<p align="center">
+  <img src="./public/img/agradecimientos.gif" alt="agradecimientos">
+</p>
 
 ---
 

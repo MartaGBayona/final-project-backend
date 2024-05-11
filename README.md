@@ -107,7 +107,7 @@ localhost:8000/api/auth/register
 localhost:8000/api/auth/login
 ```
 
-<image src="./public/img/log.png" alt="login">
+<image src="./public/img/Log.png" alt="login">
 
 - LogOut:
 
@@ -339,10 +339,6 @@ localhost:8000/api/inscriptions/id
 ## Acknowledgments  :sparkling_heart:
 
 My deepest gratitude to all my colleagues at GeeksHubs Academy.
-
-<p align="center">
-  <img src="./public/img/agradecimientos.gif" alt="agradecimientos">
-</p>
 
 ---
 
